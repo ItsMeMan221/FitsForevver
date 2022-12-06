@@ -1,0 +1,699 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="start"
+                android:text="Welcome To Fit Forever"
+                android:textSize="28sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Select our recommended plan"
+                android:textSize="15sp" />
+
+
+            <!--      Recommended Plan card      -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/recommend_plan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                app:cardCornerRadius="15dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/recommend_plan" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@drawable/image_grad_top" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="bottom"
+                    android:background="@drawable/image_grad_bottom" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Muscle &amp; Strength Starter"
+                        android:textSize="20sp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="39dp"
+                        android:layout_marginTop="20dp"
+                        android:backgroundTint="@color/mute"
+                        android:enabled="false"
+                        android:text="5 weeks"
+                        android:textColor="@color/white"
+                        android:textSize="10sp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="5dp"
+                        app:icon="@drawable/calendar"
+                        app:iconSize="20sp"
+                        app:iconTint="@color/white" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="With only 5 weeks you can \n build your muscle and strength"
+                        android:textAppearance="?attr/textAppearanceBody2" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Gain Muscle"
+                android:textSize="24sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Focus on muscle tone and strength with plans composed mostly of low repetition strength training"
+                android:textColor="@color/mute" />
+
+            <!--      Gain Muscles      -->
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/gainmuscle1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginTop="20dp"
+                        app:cardCornerRadius="15dp">
+
+                        <ImageView
+                            android:layout_width="220dp"
+                            android:layout_height="250dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/gainmuscle1" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:background="@drawable/image_grad_top" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:layout_gravity="bottom"
+                            android:background="@drawable/image_grad_bottom" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Full Body Gainer"
+                                android:textSize="20sp" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="39dp"
+                                android:layout_marginTop="20dp"
+                                android:backgroundTint="@color/mute"
+                                android:enabled="false"
+                                android:text="9 weeks"
+                                android:textColor="@color/white"
+                                android:textSize="10sp"
+                                app:cardCornerRadius="8dp"
+                                app:cardElevation="5dp"
+                                app:icon="@drawable/calendar"
+                                app:iconSize="20sp"
+                                app:iconTint="@color/white" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/gainmuscle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginTop="20dp"
+                        app:cardCornerRadius="15dp">
+
+                        <ImageView
+                            android:layout_width="220dp"
+                            android:layout_height="250dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/gainmuscle2" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:background="@drawable/image_grad_top" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:layout_gravity="bottom"
+                            android:background="@drawable/image_grad_bottom" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Split Body Gainer"
+                                android:textSize="20sp" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="39dp"
+                                android:layout_marginTop="20dp"
+                                android:backgroundTint="@color/mute"
+                                android:enabled="false"
+                                android:text="12 weeks"
+                                android:textColor="@color/white"
+                                android:textSize="10sp"
+                                app:cardCornerRadius="8dp"
+                                app:cardElevation="5dp"
+                                app:icon="@drawable/calendar"
+                                app:iconSize="20sp"
+                                app:iconTint="@color/white" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/gainmuscle3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginTop="20dp"
+                        app:cardCornerRadius="15dp">
+
+                        <ImageView
+                            android:layout_width="220dp"
+                            android:layout_height="250dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/gainmuscle3" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:background="@drawable/image_grad_top" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:layout_gravity="bottom"
+                            android:background="@drawable/image_grad_bottom" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Explosive Tone Up"
+                                android:textSize="20sp" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="39dp"
+                                android:layout_marginTop="20dp"
+                                android:backgroundTint="@color/mute"
+                                android:enabled="false"
+                                android:text="16 weeks"
+                                android:textColor="@color/white"
+                                android:textSize="10sp"
+                                app:cardCornerRadius="8dp"
+                                app:cardElevation="5dp"
+                                app:icon="@drawable/calendar"
+                                app:iconSize="20sp"
+                                app:iconTint="@color/white" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/gainmuscle4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginTop="20dp"
+                        app:cardCornerRadius="15dp">
+
+                        <ImageView
+                            android:layout_width="220dp"
+                            android:layout_height="250dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/gainmuscle4" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:background="@drawable/image_grad_top" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:layout_gravity="bottom"
+                            android:background="@drawable/image_grad_bottom" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Muscle Shredder"
+                                android:textSize="20sp" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="39dp"
+                                android:layout_marginTop="20dp"
+                                android:backgroundTint="@color/mute"
+                                android:enabled="false"
+                                android:text="24 weeks"
+                                android:textColor="@color/white"
+                                android:textSize="10sp"
+                                app:cardCornerRadius="8dp"
+                                app:cardElevation="5dp"
+                                app:icon="@drawable/calendar"
+                                app:iconSize="20sp"
+                                app:iconTint="@color/white" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/gainmuscle5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginTop="20dp"
+                        app:cardCornerRadius="15dp">
+
+                        <ImageView
+                            android:layout_width="220dp"
+                            android:layout_height="250dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/gainmuscle5" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:background="@drawable/image_grad_top" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:layout_gravity="bottom"
+                            android:background="@drawable/image_grad_bottom" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Men's Body Special"
+                                android:textSize="20sp" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="39dp"
+                                android:layout_marginTop="20dp"
+                                android:backgroundTint="@color/mute"
+                                android:enabled="false"
+                                android:text="32 weeks"
+                                android:textColor="@color/white"
+                                android:textSize="10sp"
+                                app:cardCornerRadius="8dp"
+                                app:cardElevation="5dp"
+                                app:icon="@drawable/calendar"
+                                app:iconSize="20sp"
+                                app:iconTint="@color/white" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Lose Fat"
+                android:textSize="24sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="You need to get your heart rate up to burn calories, and that's what these plans are for. "
+                android:textColor="@color/mute" />
+
+            <!--     Lose Fat       -->
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/losefat1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginTop="20dp"
+                        app:cardCornerRadius="15dp">
+
+                        <ImageView
+                            android:layout_width="220dp"
+                            android:layout_height="250dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/losefat1" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:background="@drawable/image_grad_top" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:layout_gravity="bottom"
+                            android:background="@drawable/image_grad_bottom" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Weight Loss Starter"
+                                android:textSize="20sp" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="39dp"
+                                android:layout_marginTop="20dp"
+                                android:backgroundTint="@color/mute"
+                                android:enabled="false"
+                                android:text="5 weeks"
+                                android:textColor="@color/white"
+                                android:textSize="10sp"
+                                app:cardCornerRadius="8dp"
+                                app:cardElevation="5dp"
+                                app:icon="@drawable/calendar"
+                                app:iconSize="20sp"
+                                app:iconTint="@color/white" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/losefat2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginTop="20dp"
+                        app:cardCornerRadius="15dp">
+
+                        <ImageView
+                            android:layout_width="220dp"
+                            android:layout_height="250dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/losefat2" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:background="@drawable/image_grad_top" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:layout_gravity="bottom"
+                            android:background="@drawable/image_grad_bottom" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Super Cardio Burner"
+                                android:textSize="20sp" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="39dp"
+                                android:layout_marginTop="20dp"
+                                android:backgroundTint="@color/mute"
+                                android:enabled="false"
+                                android:text="9 weeks"
+                                android:textColor="@color/white"
+                                android:textSize="10sp"
+                                app:cardCornerRadius="8dp"
+                                app:cardElevation="5dp"
+                                app:icon="@drawable/calendar"
+                                app:iconSize="20sp"
+                                app:iconTint="@color/white" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/losefat3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginTop="20dp"
+                        app:cardCornerRadius="15dp">
+
+                        <ImageView
+                            android:layout_width="220dp"
+                            android:layout_height="250dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/losefat3" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:background="@drawable/image_grad_top" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:layout_gravity="bottom"
+                            android:background="@drawable/image_grad_bottom" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Balanced Fat Loss"
+                                android:textSize="20sp" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="39dp"
+                                android:layout_marginTop="20dp"
+                                android:backgroundTint="@color/mute"
+                                android:enabled="false"
+                                android:text="12 weeks"
+                                android:textColor="@color/white"
+                                android:textSize="10sp"
+                                app:cardCornerRadius="8dp"
+                                app:cardElevation="5dp"
+                                app:icon="@drawable/calendar"
+                                app:iconSize="20sp"
+                                app:iconTint="@color/white" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/losefat4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginTop="20dp"
+                        app:cardCornerRadius="15dp">
+
+                        <ImageView
+                            android:layout_width="220dp"
+                            android:layout_height="250dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/losefat4" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:background="@drawable/image_grad_top" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:layout_gravity="bottom"
+                            android:background="@drawable/image_grad_bottom" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Endurance Builder"
+                                android:textSize="20sp" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="39dp"
+                                android:layout_marginTop="20dp"
+                                android:backgroundTint="@color/mute"
+                                android:enabled="false"
+                                android:text="24 weeks"
+                                android:textColor="@color/white"
+                                android:textSize="10sp"
+                                app:cardCornerRadius="8dp"
+                                app:cardElevation="5dp"
+                                app:icon="@drawable/calendar"
+                                app:iconSize="20sp"
+                                app:iconTint="@color/white" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/losefat5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginTop="20dp"
+                        app:cardCornerRadius="15dp">
+
+                        <ImageView
+                            android:layout_width="220dp"
+                            android:layout_height="250dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/gainmuscle5" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:background="@drawable/image_grad_top" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:layout_gravity="bottom"
+                            android:background="@drawable/image_grad_bottom" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Men's Body Special"
+                                android:textSize="20sp" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="39dp"
+                                android:layout_marginTop="20dp"
+                                android:backgroundTint="@color/mute"
+                                android:enabled="false"
+                                android:text="32 weeks"
+                                android:textColor="@color/white"
+                                android:textSize="10sp"
+                                app:cardCornerRadius="8dp"
+                                app:cardElevation="5dp"
+                                app:icon="@drawable/calendar"
+                                app:iconSize="20sp"
+                                app:iconTint="@color/white" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

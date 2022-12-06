@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">FitsForever</string>
+    <string name="titleApp">Fits Forever</string>
+    <string name="subTitleApp">Make your health &amp; fitness secured by planning your activities in our app</string>
+    <string name="start">Get Started</string>
+    <string name="signUp">Sign Up</string>
+    <string name="signIn">Sign In</string>
+    <string name="register">Registration</string>
+    <string name="sub_reg">Welcome to Fits Forever
+            \n Start your journey now</string>
+    <string name="quotes">"Time and health are two precious
+        assets that we don’t recognize and appreciate until they have been depleted"</string>
+
+    <string name="profile">Profile</string>
+    <string name="logout">Logout</string>
+
+
+    <string-array name="card_button">
+        <item>Edit</item>
+        <item>Delete</item>
+    </string-array>
+</resources>

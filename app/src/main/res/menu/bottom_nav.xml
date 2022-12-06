@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_home"
+        android:icon="@drawable/home_vector_assets"
+        android:title="Home" />
+    <item android:id="@+id/nav_yourAct"
+        android:icon="@drawable/calore_intake_vector"
+        android:title="Your Activity" />
+    <item android:id="@+id/nav_food"
+        android:icon="@drawable/restaurant_asset"
+        android:title="Food"/>
+    <item android:id="@+id/nav_profile"
+        android:icon="@drawable/profile_vector"
+        android:title="Profile"/>
+</menu>

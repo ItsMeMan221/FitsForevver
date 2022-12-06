@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "959880810662",
+    "project_id": "fitsforever-7b320",
+    "storage_bucket": "fitsforever-7b320.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:959880810662:android:de3171d187a3b427fba467",
+        "android_client_info": {
+          "package_name": "com.santiago.fitsforever"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "959880810662-9lud5bhqvfopt3cfq82396sgn86lo71f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4CFZv0Jkfk0f9bMuGuw4ZyhBj-4dtu74"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "959880810662-9lud5bhqvfopt3cfq82396sgn86lo71f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
