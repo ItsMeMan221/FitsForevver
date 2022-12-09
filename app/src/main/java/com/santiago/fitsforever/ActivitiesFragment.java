@@ -5,7 +5,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,7 +34,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.concurrent.Executor;
 
-public class ActivitiesFragment extends Fragment {
+public class ActivitiesFragment extends Fragment implements DataListener {
     FirebaseFirestore db;
     FirebaseAuth mAuth;
     TextView textViewUsername;
@@ -41,6 +43,7 @@ public class ActivitiesFragment extends Fragment {
     RecyclerView recyclerView;
     Button addAct;
     String excType;
+    private Spinner spinner;
     private ArrayList<UserActivities> userActivities;
     RecycleActivitiesAdapter myAdapter;
 
@@ -66,8 +69,7 @@ public class ActivitiesFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycleView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
-
-
+        myAdapter = new RecycleActivitiesAdapter(getContext(), userActivities, this);
         addAct = view.findViewById(R.id.addActivity);
         addAct.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,11 +104,18 @@ public class ActivitiesFragment extends Fragment {
                                                         excType = dc.getString("Name");
                                                     }
                                                 }
-                                                UserActivities userAct = new UserActivities(document.getString("date"), document.getString("desc"), excType, document.getString("nameAct"), document.getString("time"), document.getString("repetition"));
+                                                UserActivities userAct = new UserActivities(document.getString("date"),
+                                                        document.getString("desc"),
+                                                        excType,
+                                                        document.getString("nameAct"),
+                                                        document.getString("time"),
+                                                        document.getString("repetition"),
+                                                        document.getId());
+
                                                 userActivities.add(userAct);
-                                                myAdapter = new RecycleActivitiesAdapter(getContext(), userActivities);
-                                                recyclerView.setAdapter(myAdapter);
+                                                myAdapter.update(userActivities);
                                                 myAdapter.notifyDataSetChanged();
+                                                recyclerView.setAdapter(myAdapter);
                                             }
                                         });
                             }
@@ -116,6 +125,57 @@ public class ActivitiesFragment extends Fragment {
                     }
                 });
     }
+
+    private void updateData() {
+        FirebaseUser user = mAuth.getCurrentUser();
+        Uid = user.getUid();
+        userActivities = new ArrayList<>();
+        userActivities.clear();
+        myAdapter.update(userActivities);
+        myAdapter.notifyDataSetChanged();
+
+        db.collection("UserActivity")
+                .whereEqualTo("uId", Uid)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String excId = document.getString("excType");
+                                db.collection("Excersice").document(excId)
+                                        .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                if (task.isSuccessful()) {
+                                                    DocumentSnapshot dc = task.getResult();
+                                                    if (dc.exists()) {
+                                                        excType = dc.getString("Name");
+                                                    }
+                                                }
+                                                UserActivities userAct = new UserActivities(document.getString("date"),
+                                                        document.getString("desc"),
+                                                        excType,
+                                                        document.getString("nameAct"),
+                                                        document.getString("time"),
+                                                        document.getString("repetition"),
+                                                        document.getId());
+                                                Log.d("PARAM", "TRIGGERED THIS");
+                                                userActivities.add(userAct);
+                                                myAdapter.update(userActivities);
+                                                recyclerView.setAdapter(myAdapter);
+                                                myAdapter.notifyDataSetChanged();
+                                            }
+                                        });
+
+                            }
+                        } else {
+                            Toast.makeText(getActivity(), "Error getting documents: " + task.getException(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+    }
+
 
     private void addActivity() {
         FragmentAddActivities fragmentAddActivities = new FragmentAddActivities();
@@ -138,5 +198,13 @@ public class ActivitiesFragment extends Fragment {
         });
     }
 
+    public static ActivitiesFragment newInstance() {
+        ActivitiesFragment fragment = new ActivitiesFragment();
+        return fragment;
+    }
 
+    @Override
+    public void onChangedListener() {
+        updateData();
+    }
 }

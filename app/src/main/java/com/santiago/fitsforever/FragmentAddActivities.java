@@ -67,6 +67,11 @@ public class FragmentAddActivities extends Fragment {
     Map<String, Object> temp = new HashMap<>();
     // value for all text
     String actName, typeExc, rep, date, time, desc;
+    String tempType;
+
+    private static final String PARAM_UID = "PARAM_UID";
+    private static final String PARAM_TYPE = "PARAM_TYPE";
+    private String paramId, paramTypeId;
 
     @Nullable
     @Override
@@ -92,7 +97,6 @@ public class FragmentAddActivities extends Fragment {
         descEdit = (EditText) view.findViewById(R.id.description);
 
         //Start populating the dropdown data
-        getDataDropdown();
         dateEdit = (EditText) view.findViewById(R.id.date);
         timeEdit = (EditText) view.findViewById(R.id.time);
         submit = (Button) view.findViewById(R.id.submit);
@@ -113,7 +117,9 @@ public class FragmentAddActivities extends Fragment {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 AddActivity();
+
             }
         });
 
@@ -129,9 +135,16 @@ public class FragmentAddActivities extends Fragment {
                 }
             }
         });
+        if (getArguments() != null) {
+            paramId = getArguments().getString(PARAM_UID);
+            paramTypeId = getArguments().getString(PARAM_TYPE);
+            getDataEdit();
+        }
+        getDataDropdown();
     }
 
     private void AddActivity() {
+
         actName = actNameEdit.getText().toString().trim();
         rep = repEdit.getText().toString().trim();
         date = dateEdit.getText().toString().trim();
@@ -193,21 +206,41 @@ public class FragmentAddActivities extends Fragment {
         storeData.put("desc", desc);
         storeData.put("status", 1);
 
-        db.collection("UserActivity")
-                .add(storeData)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Toast.makeText(getActivity(), "Your activity successfully been added", Toast.LENGTH_LONG).show();
-                        listAct();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getActivity(), "ERROR : " + e.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                });
+        if (getArguments() == null) {
+            db.collection("UserActivity")
+                    .add(storeData)
+                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            Toast.makeText(getActivity(), "Your activity successfully been added", Toast.LENGTH_LONG).show();
+                            listAct();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getActivity(), "ERROR : " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+        } else {
+            db.collection("UserActivity").document(paramId)
+                    .update(storeData)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(getContext(), "Activity successfully updated", Toast.LENGTH_LONG).show();
+                                listAct();
+                            }
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getActivity(), "ERROR : " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+        }
     }
 
     private void showTimeDialog(EditText timeEdit) {
@@ -250,6 +283,7 @@ public class FragmentAddActivities extends Fragment {
 
     // Method for populate the data
     public void getDataDropdown() {
+
         db.collection("Excersice")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -263,14 +297,18 @@ public class FragmentAddActivities extends Fragment {
                                 codeValidator.put(document.getId(), document.getString("Name"));
                             }
                             itemAdapter.notifyDataSetChanged();
+                            if (paramTypeId != null) {
+                                tempType = paramTypeId;
+                                typeExcEdit.setText(tempType, false);
+                            }
                             typeExcEdit.setAdapter(itemAdapter);
-
-
                         } else {
                             Log.d("Hello", "Error getting documents: ", task.getException());
                         }
                     }
                 });
+
+
     }
 
     private void listAct() {
@@ -280,6 +318,38 @@ public class FragmentAddActivities extends Fragment {
                 .replace(R.id.fragment_container, activitiesFragment, activitiesFragment.getTag())
                 .commit();
 
+    }
+
+    private void getDataEdit() {
+        DocumentReference docRef = db.collection("UserActivity").document(paramId);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        actNameEdit.setText(document.getString("nameAct"));
+                        repEdit.setText(document.getString("repetition"));
+                        dateEdit.setText(document.getString("date"));
+                        timeEdit.setText(document.getString("time"));
+                        descEdit.setText(document.getString("desc"));
+                    } else {
+                        Log.d("asd", "No such document");
+                    }
+                } else {
+                    Log.d("asd", "get failed with ", task.getException());
+                }
+            }
+        });
+    }
+
+    public static FragmentAddActivities newInstance(String Uid, String idType) {
+        FragmentAddActivities fragment = new FragmentAddActivities();
+        Bundle args = new Bundle();
+        args.putString(PARAM_UID, Uid);
+        args.putString(PARAM_TYPE, idType);
+        fragment.setArguments(args);
+        return fragment;
     }
 
 }

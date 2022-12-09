@@ -33,6 +33,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class SignUp extends AppCompatActivity {
     //Initialize all widgets
@@ -43,7 +46,7 @@ public class SignUp extends AppCompatActivity {
     //Value of the string
     private String emailV, fullNameV, passwordV, conPassV;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-
+    Map<String, Object> users = new HashMap<>();
     private final static int RC_SIGN_IN = 123;
     private GoogleSignInClient googleSignInClient;
 
@@ -160,6 +163,7 @@ public class SignUp extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+
                             String uId = FirebaseAuth.getInstance().getCurrentUser().getUid();
                             User user = new User(fullNameV, emailV);
                             db.collection("Users")
@@ -175,6 +179,7 @@ public class SignUp extends AppCompatActivity {
                                             fullName.setText("");
                                             password.setText("");
                                             conPass.setText("");
+                                            finish();
 
                                         }
                                     }).addOnFailureListener(new OnFailureListener() {
@@ -200,7 +205,7 @@ public class SignUp extends AppCompatActivity {
                 GoogleSignInAccount account = accountTask.getResult(ApiException.class);
                 firebaseAuthWithGoogle(account);
             } catch (Exception e) {
-
+                Toast.makeText(getApplicationContext(), "ERROR: " + e.getMessage(), Toast.LENGTH_LONG).show();
             }
         }
     }

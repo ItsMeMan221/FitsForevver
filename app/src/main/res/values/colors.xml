@@ -13,5 +13,6 @@
     <color name="light_slate_grey">#6D8A96</color>
     <color name="color_second">#1F1B24</color>
     <color name="color_third"> #212121</color>
+    <color name="color_red">#893168</color>
 
 </resources>

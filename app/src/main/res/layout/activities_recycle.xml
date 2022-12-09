@@ -5,13 +5,13 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="10dp"
-        app:cardBackgroundColor="@color/color_second"
-        app:cardCornerRadius="5dp">
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            app:cardBackgroundColor="@color/color_second"
+            app:cardCornerRadius="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,25 +20,15 @@
             android:orientation="vertical"
             android:paddingBottom="20dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+
+            <TextView
+                android:id="@+id/actName"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginTop="20dp"
+                android:text="HOLD"
+                android:textSize="30sp" />
 
-                <TextView
-                    android:id="@+id/actName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="HOLD"
-                    android:textSize="30sp" />
-
-                <Spinner
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:layout_marginTop="20dp" />
-            </LinearLayout>
 
             <TextView
                 android:id="@+id/typeExc"
@@ -91,6 +81,41 @@
                 app:cornerRadius="10dp"
                 app:icon="@drawable/clock"
                 app:iconTint="@color/white" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="end"
+                android:foregroundGravity="right"
+                android:gravity="end"
+                >
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/Edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:backgroundTint="@color/teal_200"
+                    android:focusable="false"
+                    android:text="Edit"
+                    android:textSize="14sp"
+                    app:cornerRadius="10dp"
+                    android:layout_marginHorizontal="20dp"
+                    app:icon="@drawable/ic_baseline_drive_file_rename_outline_24"
+                    app:iconTint="@color/black" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/Delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:backgroundTint="@color/color_red"
+                    android:focusable="false"
+                    android:text="Delete"
+                    android:textSize="14sp"
+                    app:cornerRadius="10dp"
+                    app:icon="@drawable/ic_baseline_remove_24"
+                    app:iconTint="@color/black" />
+            </LinearLayout>
+
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
