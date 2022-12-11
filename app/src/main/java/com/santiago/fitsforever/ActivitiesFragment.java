@@ -43,7 +43,6 @@ public class ActivitiesFragment extends Fragment implements DataListener {
     RecyclerView recyclerView;
     Button addAct;
     String excType;
-    private Spinner spinner;
     private ArrayList<UserActivities> userActivities;
     RecycleActivitiesAdapter myAdapter;
 

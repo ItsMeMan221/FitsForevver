@@ -16,29 +16,29 @@
         android:id="@+id/appName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:gravity="center_horizontal"
         android:text="@string/titleApp"
         android:textSize="40sp"
-        android:layout_marginTop="20dp"
         android:textStyle="bold" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/appName"
-        android:text="@string/quotes"
-        android:gravity="center_horizontal"
         android:layout_marginTop="30dp"
-        android:textSize="20sp"/>
+        android:gravity="center_horizontal"
+        android:text="@string/quotes"
+        android:textSize="20sp" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/backImage"
-        android:layout_marginTop="-30dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
+        android:layout_marginTop="-30dp"
         android:background="@drawable/layoutborder">
 
         <LinearLayout
@@ -50,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="WELCOME BACK"
+                android:text="@string/welcome_back"
                 android:textSize="40sp"
                 android:textStyle="bold" />
 
@@ -58,7 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="Enter your registered account below"
+                android:text="@string/welcome_words"
                 android:textColor="@color/mute"
                 android:textSize="15sp"
                 android:textStyle="bold" />
@@ -67,7 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Email" />
+                android:text="@string/email" />
 
             <EditText
                 android:id="@+id/email"
@@ -75,17 +75,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/edit_text"
-                android:hint="Enter Your Email"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
+                android:hint="@string/enter_your_email"
                 android:paddingHorizontal="10dp"
-                android:paddingVertical="15dp" />
+                android:paddingVertical="15dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Password" />
+                android:text="@string/password" />
 
             <EditText
                 android:id="@+id/password"
@@ -93,19 +93,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/edit_text"
-                android:hint="Enter Your Password"
+                android:hint="@string/enter_your_password"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="15dp"
                 android:password="true"
                 android:textColor="@color/black"
-                android:textColorHint="@color/black"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="15dp" />
+                android:textColorHint="@color/black" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/login"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="25dp"
-                android:text="Sign In"
+                android:text="@string/sign_in"
                 app:cornerRadius="10dp" />
 
             <View
@@ -121,7 +121,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:gravity="center_horizontal"
-                android:text="Or Sign In with:"
+                android:text="@string/or_sign_in_with"
                 android:textColor="@color/mute"
                 android:textSize="14sp" />
 
@@ -132,7 +132,7 @@
                 android:layout_marginHorizontal="80dp"
                 android:layout_marginTop="10dp"
                 android:backgroundTint="@color/white"
-                android:text="Google"
+                android:text="@string/google"
                 android:textColor="@color/black"
                 app:cornerRadius="10dp"
                 app:icon="@drawable/googleicon"

@@ -13,12 +13,62 @@
 
     <string name="profile">Profile</string>
     <string name="logout">Logout</string>
-
+    <string name="desc_profile">Hello there, allow me to introduce myself, My name is Santiago, I am a student at UKRIDA (Universitas Kristen Krida Wacana) majoring in Informatics. I made this mobile application for the final project of Mobile Programming 1. I use tool such as android studio for developing this mobile application, firebase for the database and dribble for UI UX reference. That\'s about it, thank you for using this application </string>
+    <string name="gain_muscle_string">Focus on muscle tone and strength with plans composed mostly of low repetition strength training</string>
+    <string name="select_plan">Select our recommended plan</string>
+    <string name="welcome_to_fit_forever">Welcome To Fit Forever</string>
+    <string name="gain_muscle">Gain Muscle</string>
+    <string name="lose_fat">Lose Fat</string>
+    <string name="lose_fat_desc">You need to get your heart rate up to burn calories, and that\'s what these plans are for.</string>
+    <string name="start_date">Start Date:</string>
+    <string name="time_start">Time Start:</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="welcome_back">WELCOME BACK</string>
+    <string name="welcome_words">Enter your registered account below</string>
+    <string name="email">Email</string>
+    <string name="enter_your_email">Enter Your Email</string>
+    <string name="password">Password</string>
+    <string name="enter_your_password">Enter Your Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="or_sign_in_with">Or Sign In with:</string>
+    <string name="google">Google</string>
+    <string name="enter_your_full_name">Enter Your Full Name</string>
+    <string name="confirm_your_password">Confirm your Password</string>
+    <string name="or_sign_up_with">Or Sign Up with:</string>
+    <string name="already_have_an_account_sign_in">Already Have an Account? Sign In</string>
+    <string name="your_information">Your Information</string>
+    <string name="full_name">Full Name:</string>
+    <string name="email_2">Email:</string>
+    <string name="height">Height:</string>
+    <string name="weight">Weight</string>
+    <string name="bmi">BMI:</string>
+    <string name="your_activities">Your Activities:</string>
+    <string name="add_your_personal_activity">Add your personal activity</string>
+    <string name="activity_name">Activity Name</string>
+    <string name="type_of_exercise">Type of Exercise</string>
+    <string name="repetition">Repetition</string>
+    <string name="select_a_date">Select a Date</string>
+    <string name="select_a_time">Select a Time</string>
+    <string name="description">Description</string>
+    <string name="cancel">Cancel</string>
+    <string name="submit">Submit</string>
+    <string name="developer_credit">Developer Credit</string>
+    <string name="short_description">Short Description:</string>
+    <string name="contact_me">Contact Me:</string>
+    <string name="linked_in">LINKED IN</string>
+    <string name="gmail">GMAIL</string>
+    <string name="edit_your_profile">Edit your profile</string>
+    <string name="change_profile_picture">Change profile picture</string>
+    <string name="change_your_profile">Change your profile</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="account_setting">Account Setting</string>
+    <string name="account_information">Account Information</string>
+    <string name="others">Others</string>
+    <string name="credits_developer">Credits Developer</string>
 
     <string-array name="card_button">
         <item>Edit</item>
         <item>Delete</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

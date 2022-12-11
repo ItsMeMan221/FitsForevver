@@ -1,7 +1,14 @@
 package com.santiago.fitsforever;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -52,6 +59,9 @@ public class FragmentAddActivities extends Fragment {
     FirebaseFirestore db;
     FirebaseAuth mAuth;
 
+    AlarmManager alarmManager;
+    PendingIntent pendingIntent;
+
     // Initialize all view
     EditText actNameEdit, repEdit, dateEdit, timeEdit, descEdit;
     AutoCompleteTextView typeExcEdit;
@@ -68,7 +78,7 @@ public class FragmentAddActivities extends Fragment {
     // value for all text
     String actName, typeExc, rep, date, time, desc;
     String tempType;
-
+    Calendar calendar;
     private static final String PARAM_UID = "PARAM_UID";
     private static final String PARAM_TYPE = "PARAM_TYPE";
     private String paramId, paramTypeId;
@@ -80,7 +90,8 @@ public class FragmentAddActivities extends Fragment {
         // Getting instance for firebase
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
-
+        calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
         // Inflate the view
         View view = inflater.inflate(R.layout.fragment_add_activities, container, false);
         return view;
@@ -122,6 +133,16 @@ public class FragmentAddActivities extends Fragment {
 
             }
         });
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivitiesFragment activitiesFragment = new ActivitiesFragment();
+                FragmentManager manager = getFragmentManager();
+                manager.beginTransaction()
+                        .replace(R.id.fragment_container, activitiesFragment, activitiesFragment.getTag())
+                        .commit();
+            }
+        });
 
         // Get the id of exercise type
         typeExcEdit.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -135,6 +156,8 @@ public class FragmentAddActivities extends Fragment {
                 }
             }
         });
+        CreateNotificationChannel();
+
         if (getArguments() != null) {
             paramId = getArguments().getString(PARAM_UID);
             paramTypeId = getArguments().getString(PARAM_TYPE);
@@ -222,6 +245,11 @@ public class FragmentAddActivities extends Fragment {
                             Toast.makeText(getActivity(), "ERROR : " + e.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     });
+            alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+            Intent intent = new Intent(getActivity(), AlarmReceiver.class);
+
+            pendingIntent = PendingIntent.getBroadcast(getContext(), 0, intent, 0);
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
         } else {
             db.collection("UserActivity").document(paramId)
                     .update(storeData)
@@ -241,11 +269,11 @@ public class FragmentAddActivities extends Fragment {
                         }
                     });
         }
+
     }
 
     private void showTimeDialog(EditText timeEdit) {
         TimePickerDialog timePickerDialog;
-        Calendar calendar = Calendar.getInstance();
 
         TimePickerDialog.OnTimeSetListener timeSetListener = new TimePickerDialog.OnTimeSetListener() {
             @Override
@@ -263,7 +291,6 @@ public class FragmentAddActivities extends Fragment {
 
     private void showDateDialog(EditText dateEdit) {
         DatePickerDialog datePickerDialog;
-        final Calendar calendar = Calendar.getInstance();
         DatePickerDialog.OnDateSetListener dataSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -271,7 +298,7 @@ public class FragmentAddActivities extends Fragment {
                 calendar.set(Calendar.MONTH, month);
                 calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
-                DateFormat simpleDateFormat = new SimpleDateFormat("yy-MM-dd", Locale.US);
+                DateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
                 String strDate = simpleDateFormat.format(calendar.getTime());
                 dateEdit.setText(strDate);
             }
@@ -350,6 +377,18 @@ public class FragmentAddActivities extends Fragment {
         args.putString(PARAM_TYPE, idType);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    private void CreateNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "FitsForever";
+            String description = "Channel For Alarm Manager";
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel channel = new NotificationChannel("FitsForever", name, importance);
+
+            NotificationManager notificationManager = getActivity().getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 
 }

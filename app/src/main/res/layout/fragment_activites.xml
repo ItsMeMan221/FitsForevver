@@ -1,52 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
+
     <TextView
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""
+        android:layout_marginHorizontal="10dp"
         android:layout_marginTop="20dp"
-        android:textSize="30sp"
-        android:layout_marginHorizontal="10dp"/>
+        android:text=""
+        android:textSize="30sp" />
+
     <TextView
         android:id="@+id/yourAct"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="10dp"
-        android:text="Your Activities:"
         android:layout_below="@+id/username"
-        android:textSize="18sp"
-        android:textColor="@color/mute"/>
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/your_activities"
+        android:textColor="@color/mute"
+        android:textSize="18sp" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/yourAct"
         android:layout_marginTop="20dp">
+
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/recycleView"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp" />
     </ScrollView>
 
     <com.google.android.material.button.MaterialButton
-        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
         android:id="@+id/addActivity"
-        app:cornerRadius="28dp"
+        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
         android:layout_width="56dp"
         android:layout_height="56dp"
-        app:icon="@drawable/plus"
-        app:iconGravity="top"
-        app:iconSize="30dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        />
+        app:cornerRadius="28dp"
+        app:icon="@drawable/plus"
+        app:iconGravity="top"
+        app:iconSize="30dp" />
 
 </RelativeLayout>

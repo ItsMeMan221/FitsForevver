@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
-        android:text="Add your personal activity"
+        android:text="@string/add_your_personal_activity"
         android:textSize="20sp" />
 
     <ScrollView
@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:backgroundTintMode="src_over"
-                android:hint="Activity Name"
+                android:hint="@string/activity_name"
                 app:startIconDrawable="@drawable/ic_baseline_drive_file_rename_outline_24">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/dropdown_bg"
-                android:hint="Type of Exercise"
+                android:hint="@string/type_of_exercise"
                 app:boxStrokeWidth="0dp"
                 app:boxStrokeWidthFocused="0dp"
                 app:startIconDrawable="@drawable/barbel">
@@ -73,7 +73,7 @@
                 android:layout_marginTop="20dp"
                 android:background="@color/white"
                 android:backgroundTintMode="src_over"
-                android:hint="Repetition"
+                android:hint="@string/repetition"
                 app:startIconDrawable="@drawable/repeat">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -90,7 +90,7 @@
                 android:layout_marginTop="20dp"
                 android:background="@color/white"
                 android:backgroundTintMode="src_over"
-                android:hint="Select a Date"
+                android:hint="@string/select_a_date"
 
                 app:startIconDrawable="@drawable/date">
 
@@ -98,9 +98,9 @@
                     android:id="@+id/date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="none"
                     android:allowClickWhenDisabled="true"
-                    android:focusable="false"/>
+                    android:focusable="false"
+                    android:inputType="none" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -110,16 +110,16 @@
                 android:layout_marginTop="20dp"
                 android:background="@color/white"
                 android:backgroundTintMode="src_over"
-                android:hint="Select a Time"
+                android:hint="@string/select_a_time"
                 app:startIconDrawable="@drawable/clock">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="none"
                     android:allowClickWhenDisabled="true"
-                    android:focusable="false" />
+                    android:focusable="false"
+                    android:inputType="none" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -129,7 +129,7 @@
                 android:layout_marginTop="20dp"
                 android:background="@color/white"
                 android:backgroundTintMode="src_over"
-                android:hint="Description"
+                android:hint="@string/description"
                 app:startIconDrawable="@drawable/description">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -151,7 +151,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="20dp"
-                    android:text="Cancel"
+                    android:text="@string/cancel"
                     app:cornerRadius="15dp"
                     app:icon="@drawable/close"
                     app:iconGravity="end" />
@@ -162,7 +162,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="20dp"
-                    android:text="Submit"
+                    android:text="@string/submit"
                     app:cornerRadius="15dp"
                     app:icon="@drawable/done"
                     app:iconGravity="end" />

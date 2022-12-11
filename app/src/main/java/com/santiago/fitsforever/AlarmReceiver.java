@@ -22,7 +22,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "FitsForever")
                 .setSmallIcon(R.drawable.ic_launcher_background)
                 .setContentTitle("Your Activity Start Now!")
-                .setContentText("Hello")
+                .setContentText("One of your scheduled activity start now!")
                 .setAutoCancel(true)
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
