@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -26,7 +27,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -36,20 +36,20 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
+
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
+
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+
 import java.util.Calendar;
-import java.util.Collections;
-import java.util.Date;
+
+
 import java.util.HashMap;
-import java.util.List;
+
 import java.util.Locale;
 import java.util.Map;
 
@@ -83,6 +83,9 @@ public class FragmentAddActivities extends Fragment {
     private static final String PARAM_TYPE = "PARAM_TYPE";
     private String paramId, paramTypeId;
 
+
+    ProgressDialog progressDialog;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -106,7 +109,6 @@ public class FragmentAddActivities extends Fragment {
         typeExcEdit = (AutoCompleteTextView) view.findViewById(R.id.typeExc);
         repEdit = (EditText) view.findViewById(R.id.repeat);
         descEdit = (EditText) view.findViewById(R.id.description);
-
         //Start populating the dropdown data
         dateEdit = (EditText) view.findViewById(R.id.date);
         timeEdit = (EditText) view.findViewById(R.id.time);
@@ -168,6 +170,7 @@ public class FragmentAddActivities extends Fragment {
 
     private void AddActivity() {
 
+
         actName = actNameEdit.getText().toString().trim();
         rep = repEdit.getText().toString().trim();
         date = dateEdit.getText().toString().trim();
@@ -228,13 +231,19 @@ public class FragmentAddActivities extends Fragment {
         storeData.put("time", time);
         storeData.put("desc", desc);
         storeData.put("status", 1);
-
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("\t Loading...");
+        progressDialog.show();
         if (getArguments() == null) {
             db.collection("UserActivity")
                     .add(storeData)
                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
+                            if(progressDialog.isShowing()) {
+                                progressDialog.dismiss();
+                            }
                             Toast.makeText(getActivity(), "Your activity successfully been added", Toast.LENGTH_LONG).show();
                             listAct();
                         }
@@ -242,6 +251,9 @@ public class FragmentAddActivities extends Fragment {
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
+                            if(progressDialog.isShowing()) {
+                                progressDialog.dismiss();
+                            }
                             Toast.makeText(getActivity(), "ERROR : " + e.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     });
@@ -257,6 +269,9 @@ public class FragmentAddActivities extends Fragment {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
+                                if(progressDialog.isShowing()) {
+                                    progressDialog.dismiss();
+                                }
                                 Toast.makeText(getContext(), "Activity successfully updated", Toast.LENGTH_LONG).show();
                                 listAct();
                             }
@@ -265,6 +280,9 @@ public class FragmentAddActivities extends Fragment {
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
+                            if(progressDialog.isShowing()) {
+                                progressDialog.dismiss();
+                            }
                             Toast.makeText(getActivity(), "ERROR : " + e.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     });

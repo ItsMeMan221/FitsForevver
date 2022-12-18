@@ -72,13 +72,22 @@ public class FragmentAccountInfo extends Fragment {
                 txtUsername.setText(username);
                 txtEmail.setText(email);
 
-                if (weight != null && height != null) {
+                if (weight != null && height != null && !weight.equals("") && !height.equals("")) {
                     weightInt = Integer.parseInt(weight);
                     heightInt = Integer.parseInt(height);
                     txtWeight.setText(weight);
                     txtHeight.setText(height);
                     BMI = weightInt / Math.pow((heightInt / 100), 2);
-                    BMIString = Double.toString(BMI);
+                    if (BMI <= 18.5) {
+                        BMIString = "Underweight";
+                    } else if (BMI > 18.5 && BMI <= 24.9) {
+                        BMIString = "Healthy";
+                    } else if (BMI >= 25 && BMI <= 29.9) {
+                        BMIString = "Overweight";
+                    } else {
+                        BMIString = "Obese";
+                    }
+//                    BMIString = Double.toString(BMI);
                     txtBMI.setText(BMIString);
                 } else {
                     txtHeight.setVisibility(View.GONE);

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -52,7 +53,8 @@ public class SignUp extends AppCompatActivity {
 
 
     private FirebaseAuth mAuth;
-    private String TAG = "GOOGLE";
+
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +94,6 @@ public class SignUp extends AppCompatActivity {
         google.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick google");
                 Intent intent = googleSignInClient.getSignInIntent();
                 startActivityForResult(intent, RC_SIGN_IN);
 
@@ -108,7 +109,6 @@ public class SignUp extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        checkUser();
 
     }
 
@@ -157,13 +157,15 @@ public class SignUp extends AppCompatActivity {
             conPass.requestFocus();
             return;
         }
-
+        progressDialog = new ProgressDialog(getBaseContext());
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("\t Loading...");
+        progressDialog.show();
         mAuth.createUserWithEmailAndPassword(emailV, passwordV)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-
                             String uId = FirebaseAuth.getInstance().getCurrentUser().getUid();
                             User user = new User(fullNameV, emailV);
                             db.collection("Users")
@@ -172,6 +174,9 @@ public class SignUp extends AppCompatActivity {
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {
+                                            if(progressDialog.isShowing()) {
+                                                progressDialog.dismiss();
+                                            }
                                             Toast.makeText(getApplicationContext(), "User has been registered successfully", Toast.LENGTH_LONG).show();
                                             Intent intent = new Intent(getApplicationContext(), SignIn.class);
                                             startActivity(intent);
@@ -185,10 +190,16 @@ public class SignUp extends AppCompatActivity {
                                     }).addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
+                                            if(progressDialog.isShowing()) {
+                                                progressDialog.dismiss();
+                                            }
                                             Toast.makeText(getApplicationContext(), "Failed to register! Try Again!", Toast.LENGTH_LONG).show();
                                         }
                                     });
                         } else {
+                            if(progressDialog.isShowing()) {
+                                progressDialog.dismiss();
+                            }
                             Toast.makeText(getApplicationContext(), "Failed to register! Try Again!", Toast.LENGTH_LONG).show();
                         }
                     }
@@ -198,7 +209,6 @@ public class SignUp extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d(TAG, "act Result");
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> accountTask = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
@@ -228,6 +238,9 @@ public class SignUp extends AppCompatActivity {
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {
+                                            if(progressDialog.isShowing()) {
+                                                progressDialog.dismiss();
+                                            }
                                             Intent intent = new Intent(getApplicationContext(), Dashboard.class);
                                             startActivity(intent);
                                             finish();
@@ -237,10 +250,12 @@ public class SignUp extends AppCompatActivity {
                                     .addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
+
                                             Toast.makeText(getApplicationContext(), "Failed to register! Try Again!", Toast.LENGTH_LONG).show();
                                         }
                                     });
                         } else {
+
                             Intent intent = new Intent(getApplicationContext(), Dashboard.class);
                             startActivity(intent);
                             finish();
@@ -255,11 +270,4 @@ public class SignUp extends AppCompatActivity {
                 });
     }
 
-    private void checkUser() {
-        FirebaseUser firebaseUser = mAuth.getCurrentUser();
-        if (firebaseUser != null) {
-            startActivity(new Intent(getApplicationContext(), Dashboard.class));
-            finish();
-        }
-    }
 }

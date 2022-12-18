@@ -58,9 +58,6 @@ public class Dashboard extends AppCompatActivity {
     }
 
 
-
-
-
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -88,8 +85,6 @@ public class Dashboard extends AppCompatActivity {
         if (firebaseUser == null) {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
-        } else {
-            String email = firebaseUser.getEmail();
         }
     }
 

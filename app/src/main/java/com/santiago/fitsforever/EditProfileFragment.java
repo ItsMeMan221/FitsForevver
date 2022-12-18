@@ -1,6 +1,7 @@
 package com.santiago.fitsforever;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.media.Image;
@@ -51,6 +52,8 @@ public class EditProfileFragment extends Fragment {
     String username, email, weight, height, uId, imageUrl;
     Button btnChange;
     StorageReference mStorage;
+
+    ProgressDialog progressDialog;
     private static final int PICK_IMAGE_REQ = 1;
 
     @Nullable
@@ -162,6 +165,10 @@ public class EditProfileFragment extends Fragment {
             editUser.requestFocus();
             return;
         }
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("\t Loading...");
+        progressDialog.show();
         if (imageUri != null) {
             StorageReference fileRef = mStorage.child(System.currentTimeMillis() + "." + getFileExtension(imageUri));
             fileRef.putFile(imageUri)
@@ -179,6 +186,9 @@ public class EditProfileFragment extends Fragment {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if (task.isSuccessful()) {
+                                                        if(progressDialog.isShowing()) {
+                                                            progressDialog.dismiss();
+                                                        }
                                                         Toast.makeText(getContext(), "Profile successfully updated", Toast.LENGTH_LONG).show();
                                                         onSuccessEdit();
                                                     }
@@ -187,6 +197,9 @@ public class EditProfileFragment extends Fragment {
                                             .addOnFailureListener(new OnFailureListener() {
                                                 @Override
                                                 public void onFailure(@NonNull Exception e) {
+                                                    if(progressDialog.isShowing()) {
+                                                        progressDialog.dismiss();
+                                                    }
                                                     Toast.makeText(getActivity(), "ERROR : " + e.getMessage(), Toast.LENGTH_LONG).show();
                                                 }
                                             });
@@ -197,6 +210,9 @@ public class EditProfileFragment extends Fragment {
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
+                            if(progressDialog.isShowing()) {
+                                progressDialog.dismiss();
+                            }
                             Toast.makeText(getActivity(), "ERROR : " +
                                     e.getMessage(), Toast.LENGTH_LONG).show();
                         }
@@ -209,6 +225,9 @@ public class EditProfileFragment extends Fragment {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
+                                if(progressDialog.isShowing()) {
+                                    progressDialog.dismiss();
+                                }
                                 Toast.makeText(getContext(), "Profile successfully updated", Toast.LENGTH_LONG).show();
                                 onSuccessEdit();
                             }
@@ -217,6 +236,9 @@ public class EditProfileFragment extends Fragment {
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
+                            if(progressDialog.isShowing()) {
+                                progressDialog.dismiss();
+                            }
                             Toast.makeText(getActivity(), "ERROR : " + e.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     });
