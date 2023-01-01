@@ -129,13 +129,17 @@ public class EditProfileFragment extends Fragment {
                 email = (documentSnapshot.getString("email"));
                 weight = (documentSnapshot.getString("weight"));
                 height = (documentSnapshot.getString("height"));
+                imageUrl = null;
                 imageUrl = (documentSnapshot.getString("profileImage"));
-
                 editUser.setText(username);
                 editEmail.setText(email);
                 editWeight.setText(weight);
                 editHeight.setText(height);
-                Picasso.get().load(imageUrl).into(imageProfile);
+                if(imageUrl != null) {
+                    Picasso.get().load(imageUrl).into(imageProfile);
+                } else {
+                    Picasso.get().load(R.drawable.profile_default).into(imageProfile);
+                }
             }
         });
 

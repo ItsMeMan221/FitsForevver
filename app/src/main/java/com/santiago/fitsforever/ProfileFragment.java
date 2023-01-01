@@ -15,7 +15,11 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.card.MaterialCardView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -79,7 +83,14 @@ public class ProfileFragment extends Fragment {
 
     private void doLogout() {
         mAuth.signOut();
-        checkUser();
+        AuthUI.getInstance()
+                .signOut(getContext())
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        checkUser();
+                    }
+                });
     }
 
     private void getCurrentUser() {
@@ -92,8 +103,13 @@ public class ProfileFragment extends Fragment {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 username.setText(documentSnapshot.getString("fullName"));
                 email.setText(documentSnapshot.getString("email"));
+                imageUrl = null;
                 imageUrl = documentSnapshot.getString("profileImage");
-                Picasso.get().load(imageUrl).into(profileImage);
+                if (imageUrl != null) {
+                    Picasso.get().load(imageUrl).into(profileImage);
+                } else {
+                    Picasso.get().load(R.drawable.profile_default).into(profileImage);
+                }
             }
         });
     }

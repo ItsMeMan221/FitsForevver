@@ -12,6 +12,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,18 +44,15 @@ public class SignUp extends AppCompatActivity {
     private EditText email, fullName, password, conPass;
     private Button google, register;
     private TextView haveAccount;
-
+    ProgressBar progressBar;
     //Value of the string
     private String emailV, fullNameV, passwordV, conPassV;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    Map<String, Object> users = new HashMap<>();
+    private FirebaseAuth mAuth;
     private final static int RC_SIGN_IN = 123;
     private GoogleSignInClient googleSignInClient;
 
 
-    private FirebaseAuth mAuth;
-
-    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +77,8 @@ public class SignUp extends AppCompatActivity {
         fullName = (EditText) findViewById(R.id.fullName);
         password = (EditText) findViewById(R.id.password);
         conPass = (EditText) findViewById(R.id.conPass);
-
+        progressBar = (ProgressBar) findViewById(R.id.progbar);
+        progressBar.setVisibility(View.GONE);
 //        Button Register
         register = (Button) findViewById(R.id.register);
         register.setOnClickListener(new View.OnClickListener() {
@@ -157,10 +156,7 @@ public class SignUp extends AppCompatActivity {
             conPass.requestFocus();
             return;
         }
-        progressDialog = new ProgressDialog(getBaseContext());
-        progressDialog.setCancelable(false);
-        progressDialog.setMessage("\t Loading...");
-        progressDialog.show();
+        progressBar.setVisibility(View.VISIBLE);
         mAuth.createUserWithEmailAndPassword(emailV, passwordV)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -174,32 +170,21 @@ public class SignUp extends AppCompatActivity {
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {
-                                            if(progressDialog.isShowing()) {
-                                                progressDialog.dismiss();
-                                            }
                                             Toast.makeText(getApplicationContext(), "User has been registered successfully", Toast.LENGTH_LONG).show();
                                             Intent intent = new Intent(getApplicationContext(), SignIn.class);
                                             startActivity(intent);
-                                            email.setText("");
-                                            fullName.setText("");
-                                            password.setText("");
-                                            conPass.setText("");
                                             finish();
 
                                         }
                                     }).addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
-                                            if(progressDialog.isShowing()) {
-                                                progressDialog.dismiss();
-                                            }
+                                            progressBar.setVisibility(View.GONE);
                                             Toast.makeText(getApplicationContext(), "Failed to register! Try Again!", Toast.LENGTH_LONG).show();
                                         }
                                     });
                         } else {
-                            if(progressDialog.isShowing()) {
-                                progressDialog.dismiss();
-                            }
+                            progressBar.setVisibility(View.GONE);
                             Toast.makeText(getApplicationContext(), "Failed to register! Try Again!", Toast.LENGTH_LONG).show();
                         }
                     }
@@ -238,9 +223,6 @@ public class SignUp extends AppCompatActivity {
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {
-                                            if(progressDialog.isShowing()) {
-                                                progressDialog.dismiss();
-                                            }
                                             Intent intent = new Intent(getApplicationContext(), Dashboard.class);
                                             startActivity(intent);
                                             finish();

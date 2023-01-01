@@ -110,7 +110,6 @@ public class RecycleActivitiesAdapter extends RecyclerView.Adapter<RecycleActivi
 
                     }
                 })
-
                 .setNegativeButton("No", null)
                 .show();
 

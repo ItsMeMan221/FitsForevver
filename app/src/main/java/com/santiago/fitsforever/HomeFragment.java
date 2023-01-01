@@ -87,7 +87,6 @@ public class HomeFragment extends Fragment {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-
                                 AllPlan allPlan = new AllPlan(document.getString("imageUrl"),
                                         document.getString("Name"), document.getString("Duration"));
                                 gainPlan.add(allPlan);

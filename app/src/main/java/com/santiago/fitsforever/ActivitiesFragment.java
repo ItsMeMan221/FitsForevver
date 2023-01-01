@@ -159,7 +159,6 @@ public class ActivitiesFragment extends Fragment implements DataListener {
                                                         document.getString("time"),
                                                         document.getString("repetition"),
                                                         document.getId());
-                                                Log.d("PARAM", "TRIGGERED THIS");
                                                 userActivities.add(userAct);
                                                 myAdapter.update(userActivities);
                                                 recyclerView.setAdapter(myAdapter);

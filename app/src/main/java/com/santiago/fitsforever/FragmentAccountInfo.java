@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -64,10 +65,16 @@ public class FragmentAccountInfo extends Fragment {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 username = documentSnapshot.getString("fullName");
                 email = documentSnapshot.getString("email");
+                imageURL = null;
                 imageURL = documentSnapshot.getString("profileImage");
                 weight = documentSnapshot.getString("weight");
                 height = documentSnapshot.getString("height");
-                Picasso.get().load(imageURL).into(profileImage);
+                if(imageURL != null) {
+                    Picasso.get().load(imageURL).into(profileImage);
+                } else {
+                    Picasso.get().load(R.drawable.profile_default).into(profileImage);
+                }
+
 
                 txtUsername.setText(username);
                 txtEmail.setText(email);

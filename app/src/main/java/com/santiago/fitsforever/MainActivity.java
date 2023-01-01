@@ -20,9 +20,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
     Button signIn, signUp;
     FirebaseAuth mAuth;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        isLoggedIn();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         if(getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
+
 
         signIn = (Button) findViewById(R.id.signIn);
         signIn.setOnClickListener(new View.OnClickListener() {

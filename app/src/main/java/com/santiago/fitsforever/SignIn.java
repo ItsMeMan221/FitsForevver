@@ -118,6 +118,7 @@ public class SignIn extends AppCompatActivity {
                                             progressBar.setVisibility(View.GONE);
                                             Intent intent = new Intent(getApplicationContext(), Dashboard.class);
                                             startActivity(intent);
+                                            finish();
                                         }
                                     }).addOnFailureListener(new OnFailureListener() {
                                         @Override
@@ -170,6 +171,7 @@ public class SignIn extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()) {
                     startActivity(new Intent(getApplicationContext(), Dashboard.class));
+                    finish();
                 } else {
                     Toast.makeText(getApplicationContext(), "Failed to login! Please check your credentials", Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.GONE);
