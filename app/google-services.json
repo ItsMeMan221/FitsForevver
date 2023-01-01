@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "959880810662",
+    "firebase_url": "https://fitsforever-7b320-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "fitsforever-7b320",
     "storage_bucket": "fitsforever-7b320.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "959880810662-togs5ilo3r865k44lt1js12su5nn96he.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.santiago.fitsforever",
+            "certificate_hash": "24b1d68e00a2bbce71951aecc2140a5442a919e2"
+          }
+        },
         {
           "client_id": "959880810662-9lud5bhqvfopt3cfq82396sgn86lo71f.apps.googleusercontent.com",
           "client_type": 3
